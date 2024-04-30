@@ -1,0 +1,81 @@
+<mvc:View
+    controllerName="com.sap.registercontract.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:table="sap.ui.table"
+    xmlns:t="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <Table
+                id="Table"
+                items="{myModel>/}"
+            >
+                <headerToolbar>
+                    <OverflowToolbar id="_IDGenToolbar1">
+                        <ToolbarSpacer id="_IDGenToolbarSpacer1" />
+
+                        <Button
+                            id="_IDGenB3"
+                            text="Register "
+                            type="Emphasized"
+                            press="onRegister"
+                            class="sapUiTinyMarginBegin"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="_IDGenColumn11">
+                        <Text
+                            id="_IDGenText22"
+                            text="Meeting Detail"
+                        />
+                    </Column>
+                    <Column id="_IDGenColumn1">
+                        <Text
+                            id="_IDGenText2"
+                            text="Contract Number"
+                        />
+                    </Column>
+                    <Column id="_IDGenColumn2">
+                        <Text
+                            id="_IDGenText3"
+                            text="Supplier"
+                        />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        id="_IDGenColumnListItem1"
+                        
+                    >
+                        <cells>
+                            <Text
+                                id="_IDGenText60"
+                                text="{myModel>meetingdetail}"
+                            />
+                            <Text
+                                id="_IDGenText6"
+                                text="{myModel>contractnumber}"
+                            />
+                            <Text
+                                id="_IDGenText7"
+                                text="{myModel>supplier}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

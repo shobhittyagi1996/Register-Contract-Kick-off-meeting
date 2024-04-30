@@ -1,0 +1,213 @@
+<mvc:View
+    controllerName="com.sap.registercontract.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap"
+    xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:upload="sap.m.upload"
+    xmlns:s="sap.suite.ui.commons"
+    xmlns:t="sap.f"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <uxap:ObjectPageLayout
+                id="ObjectPageLayout"
+                upperCaseAnchorBar="false"
+                showAnchorBar="true"
+                enableLazyLoading="true"
+            >
+                <uxap:sections>
+                    <uxap:ObjectPageSection
+                        id="_IDGenObjectPageSection3"
+                        showTitle="false"
+                    >
+                        <uxap:subSections>
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSubSection6"
+                                title=""
+                            >
+                                <uxap:blocks>
+                                    <f:SimpleForm
+                                        id="SimpleFormChange354"
+                                        editable="true"
+                                        layout="ResponsiveGridLayout"
+                                        labelSpanXL="3"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="5"
+                                        emptySpanL="5"
+                                        emptySpanM="5"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false"
+                                    >
+                                        <f:content>
+                                            <Label
+                                                text="Contract"
+                                                required="true"
+                                            />
+                                            <Select forceSelection="false">
+                                                <core:Item
+                                                    key="Yes"
+                                                    text=""
+                                                />
+                                                <core:Item
+                                                    key="No"
+                                                    text=""
+                                                />
+                                            </Select>
+
+                                            <Label
+                                                text="Supplier"
+                                                required="true"
+                                            />
+                                            <Select forceSelection="false">
+                                                <core:Item
+                                                    key="Yes"
+                                                    text=""
+                                                />
+                                                <core:Item
+                                                    key="No"
+                                                    text=""
+                                                />
+                                            </Select>
+
+                                            <Label
+                                                text="Email"
+                                                required="true"
+                                            />
+                                            <Input id="email" />
+                                            <Label
+                                                text="Deadline"
+                                                required="true"
+                                            />
+                                            <Input id="deadline" />
+                                            <Label text="Comments" />
+                                            <Input id="comments" />
+                                        </f:content>
+                                    </f:SimpleForm>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSubSection"
+                                title="History"
+                            >
+                                <uxap:blocks>
+                                    <s:Timeline
+                                        id="idTimeline"
+                                        enableDoubleSided="false"
+                                        groupBy="HireDate"
+                                      
+                                        filterTitle="Job Title"
+                                        sortOldestFirst="true"
+                                        content="{myModel>/}"
+                                    >
+                                        <s:content>
+                                            <s:TimelineItem
+                                                id="idTemplateItem"
+                                                dateTime="{myModel>HireDate}"
+                                                title="{myModel>JobTitle}"
+                                                userNameClickable="true"
+                                                userNameClicked="onUserNameClick"
+                                                select="onPressItems"
+                                                userPicture="{myModel>Photo}"
+                                                text="{myModel>JobResponsibilities}"
+                                                userName="{myModel>Name}"
+                                                filterValue="{myModel>JobTitle}"
+                                                icon="{myModel>Icon}"
+                                            />
+                                        </s:content>
+                                    </s:Timeline>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSubSection6e"
+                                title="Attachments"
+                            >
+                                <uxap:blocks>
+                                    <upload:UploadSet
+                                        id="uploadSet"
+                                        instantUpload="false"
+                                        uploadEnabled="true"
+                                        afterItemAdded="onAfterItemAdded"
+                                        uploadCompleted="onUploadCompleted"
+                                        items="{
+                        path: '/Files',
+                        parameters: {
+                            $orderby: 'createdAt desc'
+                        },
+                        templateShareable: false}"
+                                    >
+                                        <upload:toolbar>
+                                            <OverflowToolbar>
+                                                <ToolbarSpacer />
+                                            </OverflowToolbar>
+                                        </upload:toolbar>
+                                        <upload:items>
+                                            <upload:UploadSetItem
+                                                fileName="{fileName}"
+                                                mediaType="{mediaType}"
+                                                url="{url}"
+                                                enabledEdit="false"
+                                                visibleEdit="false"
+                                                openPressed="onOpenPressed"
+                                            >
+                                                <upload:attributes>
+                                                    <ObjectAttribute
+                                                        title="Uploaded By"
+                                                        text="{createdBy}"
+                                                        active="false"
+                                                    />
+                                                    <ObjectAttribute
+                                                        title="Uploaded on"
+                                                        text="{createdAt}"
+                                                        active="false"
+                                                    />
+                                                    <ObjectAttribute
+                                                        title="File Size"
+                                                        text="{size}"
+                                                        active="false"
+                                                    />
+                                                </upload:attributes>
+                                            </upload:UploadSetItem>
+                                        </upload:items>
+                                    </upload:UploadSet>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                        </uxap:subSections>
+                    </uxap:ObjectPageSection>
+                </uxap:sections>
+            </uxap:ObjectPageLayout>
+        </content>
+        <footer>
+            <OverflowToolbar id="Toolbar">
+                <ToolbarSpacer />
+
+                <Button
+                    type="Emphasized"
+                    text="Save"
+                />
+                <Button
+                    type="Emphasized"
+                    text="Submit"
+                />
+                <Button
+                    type="Reject"
+                    text="Cancel"
+                />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
