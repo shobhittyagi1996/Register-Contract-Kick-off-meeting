@@ -12,24 +12,32 @@ sap.ui.define([
             onInit: function () {
                 let data =[
                     {
-                        "meetingdetail": "Weekly progress review meeting",
+                        "meetingdetail": "Kick Off Meeting for Contract CON1023",
                         "contractnumber": "CON1023",
-                        "supplier": "ABC Manufacturing"
+                        "supplier": "ABC Manufacturing",
+                        "status": "Draft",
+                        "dor":"2024-04-30"
                     },
                     {
-                        "meetingdetail": "Monthly performance evaluation session",
+                        "meetingdetail": "Kick Off Meeting for Contract CON2056",
                         "contractnumber": "CON2056",
-                        "supplier": "XYZ Technologies"
+                        "supplier": "XYZ Technologies",
+                        "status": "Confirmed",
+                        "dor":"2023-04-30"
                     },
                     {
-                        "meetingdetail": "Quarterly financial audit meeting",
+                        "meetingdetail": "Kick Off Meeting for Contract CON3098",
                         "contractnumber": "CON3098",
-                        "supplier": "LMN Services"
+                        "supplier": "LMN Services",
+                        "status": "Sent to Supplier",
+                        "dor":"2024-05-01"
                     },
                     {
-                        "meetingdetail": "Annual strategy planning conference",
+                        "meetingdetail": "Kick Off Meeting for Contract CON4102",
                         "contractnumber": "CON4102",
-                        "supplier": "PQR Solutions"
+                        "supplier": "PQR Solutions",
+                        "status": "Confirmed",
+                        "dor":"2024-04-30"
                     }
                 ]
                 

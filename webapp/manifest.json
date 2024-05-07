@@ -15,12 +15,21 @@
       "version": "1.13.3",
       "toolsId": "b23c1efd-bdff-4d2b-a9a6-fd910b0f4b75"
     },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/odata/v4/prototypeutilitysrv/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    },
     "crossNavigation": {
       "inbounds": {
         "manage-manage": {
-          "semanticObject": "manage",
+          "semanticObject": "CONMeetingRegister",
           "action": "manage",
-          "title": "{{flpTitle}}",
+          "title": "Manage Contract Meetings",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -69,6 +78,18 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
           "bundleName": "com.sap.registercontract.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true,
+          "defaultBindingMode": "TwoWay",
+          "useBatch": true
         }
       }
     },

@@ -37,6 +37,67 @@ sap.ui.define(
             ];
             let atablemodel = new JSONModel (adata);
             this.getView().setModel(atablemodel, "myModel")
+
+            let logModel = new JSONModel([{
+                "logDateTime": "2024-04-01",
+                "logTitle": "KPO Dept Commented",
+                "logComments": "Point No 3 in MOM adjusted.",
+                "loggedBy": "User@kpo.kz",
+
+            },
+            {
+                "logDateTime": "2024-04-05",
+                "logTitle": "Supplier Commented",
+                "logComments": "Describe more on point 3 in MOM Attached",
+                "loggedBy": "supplier@gmail.com",
+
+            },
+            {
+                "logDateTime": "2024-04-09",
+                "logTitle": "Process Started",
+                "logComments": "MoM Registered",
+                "loggedBy": "VQ@kpo.kz",
+
+            }]);
+
+            this.getView().setModel(logModel, "logModel");
+        },
+        onPressMoM:function(){
+
+            sap.m.MessageBox.confirm("Are you sure you want to confirm MOM?")
+        },
+        onSubmitMOM:function(){
+            let oDataModel = this.getOwnerComponent().getModel();
+            oDataModel.create("/sendEmail",{
+                sEmailId:"chandh@terralink-global.com",
+                sSubject:"KPO Shared Minute of Meeting for Confirmation",
+                sBody:`Dear Vendor, KPO has shared MOM for your review and confirmation. Please click on this link for review MOM <a href="https://www.google.com">Click Here</a>`
+            },{
+
+                success:function(res){
+                    alert("success");
+                },
+                error:function(error){
+                    alert("Error");
+                }
+
+
+
+            })
+
+
+            // let oDataModel = this.getOwnerComponent().getModel();
+            // var oActionBindingContext = oDataModel.bindContext("/sendEmail(...)");
+            // oActionBindingContext.setParameter("sEmailId","chandh@terralink-global.com");
+            // oActionBindingContext.setParameter("sSubject","KPO Related Minute of Meeting Demo");
+            // oActionBindingContext.setParameter("sBody","Hi Hem, PFB");
+            // oActionBindingContext.execute().then(function(){
+            //     sap.m.MessageBox.information("The Email has successfully Sent");
+               
+            // }).catch(function(error){
+            //     sap.m.MessageBox.error("Error starting instance:");
+
+            // })
         }
       });
     }

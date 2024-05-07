@@ -27,7 +27,7 @@
 
                         <Button
                             id="_IDGenB3"
-                            text="Register "
+                            text="Register New Kick Off Meeting"
                             type="Emphasized"
                             press="onRegister"
                             class="sapUiTinyMarginBegin"
@@ -47,10 +47,24 @@
                             text="Contract Number"
                         />
                     </Column>
-                    <Column id="_IDGenColumn2">
+                    <Column >
                         <Text
-                            id="_IDGenText3"
+                           
                             text="Supplier"
+                        />
+                    </Column>
+
+                     <Column >
+                        <Text
+                           
+                            text="Status"
+                        />
+                    </Column>
+
+                     <Column >
+                        <Text
+                           
+                            text="Date of Registration"
                         />
                     </Column>
                 </columns>
@@ -71,6 +85,15 @@
                             <Text
                                 id="_IDGenText7"
                                 text="{myModel>supplier}"
+                            />
+
+                              <Text
+                              
+                                text="{myModel>status}"
+                            />
+                              <Text
+                              
+                                text="{myModel>dor}"
                             />
                         </cells>
                     </ColumnListItem>
