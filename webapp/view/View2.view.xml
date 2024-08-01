@@ -31,7 +31,7 @@
                         <uxap:subSections>
                             <uxap:ObjectPageSubSection
                                 id="_IDGenObjectPageSubSection6"
-                                title=""
+                                title="Contract Meeting"
                             >
                                 <uxap:blocks>
                                     <f:SimpleForm
@@ -52,118 +52,304 @@
                                         columnsM="1"
                                         singleContainerFullSize="false"
                                     >
+                                        <f:toolbar>
+                                            <Toolbar id="TB1">
+                                                <ToolbarSpacer />
+                                                <RadioButtonGroup id="rbg3" columns="2" select="onSelect">
+                                                    <RadioButton id="PA" text="PA" />
+                                                    <RadioButton id="SM" text="SM" />
+                                                </RadioButtonGroup>
+                                            </Toolbar>
+                                        </f:toolbar>
                                         <f:content>
-                                            <Label
-                                                text="Contract"
-                                                required="true"
-                                            />
-                                            <Select forceSelection="false">
+                                            <Label text="Contract" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" showValueHelp="true" valueHelpRequest="onF4ContractNum" />
+ 
+                                            <Label text="Contract Description" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Contract Duration" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Contract Owner" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Supplier/Vendor Details" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" />
+ 
+                                            <Label text="Meeting Type" visible="{formModel>/isPASM}" />
+                                             <Select forceSelection="false" visible="{formModel>/isPASM}" >
                                                 <core:Item
-                                                    key="CON300001"
-                                                    text="CON300001"
+                                                    key=""
+                                                    text="Kick-off-meeting"
                                                 />
                                                  <core:Item
-                                                    key="CON3000014"
-                                                    text="CON3000014"
+                                                    key=""
+                                                    text="Performnce meeting"
                                                 />
-                                            </Select>
-
-                                            <Label
-                                                text="Supplier"
-                                                required="true"
-                                            />
-                                            <Select forceSelection="false">
                                                 <core:Item
-                                                    key="SUP10001"
-                                                    text="SUP10001"
-                                                />
-                                                 <core:Item
-                                                    key="SUP100012"
-                                                    text="SUP100012"
+                                                    key=""
+                                                    text="Vendor feedback"
                                                 />
                                             </Select>
-
-                                            <Label
-                                                text="Email"
-                                                required="true"
-                                            />
-                                            <Input id="email" />
-                                            <Label
-                                                text="Deadline"
-                                                required="true"
-                                            />
-                                            <DatePicker id="deadline" />
-                                            <Label text="Comments" />
-                                            <TextArea id="comments" cols="40" rows="10"/>
+ 
+                                            <Label text="Meeting Location" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" />
+ 
+                                            <Label text="Purpose of meeting/Scope" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" />
+ 
+                                            <Label text="Date of Meeting" visible="{formModel>/isPASM}" />
+                                            <DatePicker value="" visible="{formModel>/isPASM}" />
+ 
+                                            <Label text="Meeting scheduling status" visible="{formModel>/isPA}" />
+                                            <Input value="" visible="{formModel>/isPA}" />
+ 
+                                            <Label text="Meeting called by" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Meeting agenda" visible="{formModel>/isPA}" />
+                                            <TextArea value="" visible="{formModel>/isPA}" />
+ 
+                                            <Label text="MoM sequence No." visible="{formModel>/isPA}" />
+                                            <Input value="" visible="{formModel>/isPA}" />
+ 
+                                            <!-- <Label text="Note taker" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" /> -->
+ 
+                                            <Label text="Report of missinf issue date " visible="{formModel>/isPA}" />
+                                            <DatePicker value="" visible="{formModel>/isPA}" />
+ 
+                                            <!-- <Label text="Feedback Deadline" visible="{formModel>/isPA}" />
+                                            <DatePicker value="" visible="{formModel>/isPA}" /> -->
+ 
+                                            <!-- <Label text="Attended by" visible="{formModel>/isPASM}" />
+                                            <Input value="" visible="{formModel>/isPASM}" /> -->
+ 
+                                            <Label text="Qualification status" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="FPAL Status" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Company legal Address" visible="{formModel>/isSM}" />
+                                            <TextArea value="" visible="{formModel>/isSM}" />
+ 
+                                            <Label text="Meeting Details" visible="{formModel>/isPASM}" />
+                                            <TextArea value="" visible="{formModel>/isPASM}" />
+ 
+                                            <Label text="Status assignment" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" />
                                         </f:content>
                                     </f:SimpleForm>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
-
+ 
                             <uxap:ObjectPageSubSection
                                 id="_IDGenObjectPageSubSection"
-                                title="History"
+                                title="Minutes Of Meeting"
                             >
                                 <uxap:blocks>
-                                   <s:Timeline
-                                    	sortOldestFirst="true"
-                                        id="idTimeline"
-                                        groupBy="logDateTime"
-                                        enableDoubleSided="false"
-                                        enableScroll="false"
-                                         height="100%"
-                                        filterTitle="History Logs"
-                                        content="{logModel>/}"
+                                    <f:SimpleForm
+                                        id="SimpleFormChange35g4"
+                                        editable="true"
+                                        layout="ResponsiveGridLayout"
+                                        labelSpanXL="3"
+                                        labelSpanL="3"
+                                        labelSpanM="3"
+                                        labelSpanS="12"
+                                        adjustLabelSpan="false"
+                                        emptySpanXL="5"
+                                        emptySpanL="5"
+                                        emptySpanM="5"
+                                        emptySpanS="0"
+                                        columnsXL="1"
+                                        columnsL="1"
+                                        columnsM="1"
+                                        singleContainerFullSize="false"
                                     >
-                                        <s:content>
-                                            <s:TimelineItem
-                                            
-                                                dateTime="{logModel>logDateTime}"
-                                                title="{logModel>logTitle}"
-                                                userNameClickable="true"
-                                                
-                                                userNameClicked="onUserNameClick"
-                                                select="onPressItems"
-                                                text="{logModel>logComments}"
-                                                userName="{logModel>loggedBy}"
-                                                icon="sap-icon://employee"
+                                        <f:content>
+                                            <Label text="MoM sequence No." />
+                                            <Input />
+                                            <Label text="Note taker" />
+                                            <Input />
+                                            <Label
+                                                text="REPORT OF THE MEETING ISSUED DATE"
                                             />
-                                        </s:content>
-                                    </s:Timeline>
+                                            <DatePicker />
+ 
+                                            <Label text="Feedback Deadline:" />
+                                            <Input />
+                                        </f:content>
+                                    </f:SimpleForm>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                             <uxap:ObjectPageSubSection
                                 id="_IDGenObjectPageSubSection6e"
-                                title="Attachments"
+                                title="Attended By"
                             >
                                 <uxap:blocks>
-                                    <upload:UploadSet
-                                        id="uploadSet"
-                                        instantUpload="false"
-                                        uploadEnabled="true"
-                                        afterItemAdded="onAfterItemAdded"
-                                        uploadCompleted="onUploadCompleted"
-                                       
+                                    <Table
+                                        id="Table"
+                                        items="{myModel>/}"
                                     >
-                                        <upload:toolbar>
-                                            <OverflowToolbar>
-                                                <ToolbarSpacer />
-                                            </OverflowToolbar>
-                                        </upload:toolbar>
-                                        <upload:items>
-                                            <upload:UploadSetItem
-                                                fileName="Minutes of meeting for CON23XYX"
-                                                mediaType="pdf"
-                                                url="{url}"
-                                                enabledEdit="false"
-                                                visibleEdit="false"
-                                                visibleRemove="false"
-                                                openPressed="onOpenPressed"
+                                    <headerToolbar>
+                                            <OverflowToolbar
+                                                id="_IDGenToolbffar1"
                                             >
-                                               
-                                            </upload:UploadSetItem>
-                                        </upload:items>
-                                    </upload:UploadSet>
+                                                <ToolbarSpacer
+                                                    id="_IDGenTooffflbarSpacer1"
+                                                />
+ 
+                                                <Button
+                                                    id="_IDGfffffenB3"
+                                                    icon="sap-icon://add"
+                                                    type="Emphasized"
+                                                    press="onAddRow1"
+                                                    class="sapUiTinyMarginBegin"
+                                                />
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column id="_IDGenColumn11">
+                                                <Text
+                                                    id="_IDGenText22"
+                                                    text="KPO"
+                                                />
+                                            </Column>
+                                            <Column id="_IDGenColumn1">
+                                                <Text
+                                                    id="_IDGenText2"
+                                                    text="Feedback required"
+                                                />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnListItem1"
+                                            >
+                                                <cells>
+                                                    <Text
+                                                        id="_IDGenText60"
+                                                        text="{myModel>kpo}"
+                                                    />
+                                                    <CheckBox
+                                                        id="_IDGenText6"
+                                                        
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSubSection6ew"
+                                title=""
+                            >
+                                <uxap:blocks>
+                                    <Table
+                                        id="Tablee"
+                                        items="{myModel1>/}"
+                                    >
+                                        <columns>
+                                            <Column id="as">
+                                                <Text
+                                                    id=""
+                                                    text="Supplier"
+                                                />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem id="afdg">
+                                                <cells>
+                                                    <Text
+                                                        id="bgg"
+                                                        text="{myModel1>supplier}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSuhhbSection6e"
+                                title=""
+                            >
+                                <uxap:blocks>
+                                    <Table
+                                        id="Table2"
+                                        items="{logModel>/}"
+                                    >
+                                        <headerToolbar>
+                                            <OverflowToolbar
+                                                id="_IDGenToolbar1"
+                                            >
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer1"
+                                                />
+ 
+                                                <Button
+                                                    id="_IDGenB3"
+                                                    icon="sap-icon://add"
+                                                    type="Emphasized"
+                                                    press="onAddRow"
+                                                    class="sapUiTinyMarginBegin"
+                                                />
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column id="_IDGenCo2lumn11">
+                                                <Text
+                                                    id="_IDGen2Text22"
+                                                    text="NO"
+                                                />
+                                            </Column>
+                                            <Column id="_IDGen22Column1">
+                                                <Text
+                                                    id="_IDGen2Text2"
+                                                    text="Topic Discussed"
+                                                />
+                                            </Column>
+                                            <Column id="_IDGenCo2lumfn11">
+                                                <Text
+                                                    id="_IDGen2Tefxt22"
+                                                    text="KPO Attendees Comments"
+                                                />
+                                            </Column>
+                                            <Column id="_IDGen22fColumn1">
+                                                <Text
+                                                    id="_IDGfen2Text2"
+                                                    text="Supplier Comments"
+                                                />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="_IDGenColumnL2istItem1"
+                                            >
+                                                <cells>
+                                                    <TextArea
+                                                        id="_IDGenT2ext60"
+                                                        value="{logModel>NO.}"
+                                                    />
+                                                    <TextArea
+                                                        id="_IDGenT2ext6"
+                                                        value="{logModel>TOPICSDISCUSSED}"
+                                                    />
+                                                    <TextArea
+                                                        id="_IDGenT2extf60"
+                                                        value="{logModel>KPOAttendeesComments}"
+                                                    />
+                                                    <TextArea
+                                                        id="_IDGfenT2ext6"
+                                                        value="{logModel>SupplierComments}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                         </uxap:subSections>
@@ -174,26 +360,19 @@
         <footer>
             <OverflowToolbar id="Toolbar">
                 <ToolbarSpacer />
-
+ 
+                <Button text="Save" />
                 <Button
-                    type="Emphasized"
-                    text="Save as Draft"
-                />
-                <Button
-                    type="Emphasized"
-                    text="Submit"
+                    text="Submit For Review"
                     press="onSubmitMOM"
                 />
-
-                 <Button
-                    type="Accept"
-                    text="Confirm MOM"
+ 
+                <Button
+                    text="Confirm"
                     press="onPressMoM"
                 />
-                <Button
-                    type="Reject"
-                    text="Cancel"
-                />
+                <Button text="Submit For Supplier" />
+                <Button text="Sign" />
             </OverflowToolbar>
         </footer>
     </Page>

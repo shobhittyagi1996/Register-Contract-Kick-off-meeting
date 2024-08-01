@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog title="Contract">
+        <content>
+            <List
+                items="{con>/}"
+                headerText=""
+                growing="true"
+                growingThreshold="4"
+                growingScrollToLoad="false"
+            >
+                <StandardListItem title="{con>cNo}" />
+            </List>
+
+          
+
+
+        </content>
+        <Toolbar>
+            <ToolbarSpacer />
+
+            <Button
+                text="Cancel"
+                press="onCancelF4ExistingContractNum"
+            />
+        </Toolbar>
+    </Dialog>
+</core:FragmentDefinition>
