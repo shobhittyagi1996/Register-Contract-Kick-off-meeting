@@ -10,6 +10,7 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:upload="sap.m.upload"
     xmlns:s="sap.suite.ui.commons"
+    xmlns:dnd="sap.ui.core.dnd"
     xmlns:t="sap.f"
 >
     <Page
@@ -37,96 +38,398 @@
                                     <f:SimpleForm
                                         id="SimpleFormChange354"
                                         editable="true"
-                                        layout="ResponsiveGridLayout"
-                                        labelSpanXL="3"
-                                        labelSpanL="3"
-                                        labelSpanM="3"
-                                        labelSpanS="12"
-                                        adjustLabelSpan="false"
-                                        emptySpanXL="5"
-                                        emptySpanL="5"
-                                        emptySpanM="5"
-                                        emptySpanS="0"
-                                        columnsXL="1"
-                                        columnsL="1"
-                                        columnsM="1"
-                                        singleContainerFullSize="false"
                                     >
                                         <f:toolbar>
                                             <Toolbar id="TB1">
                                                 <ToolbarSpacer />
-                                                <RadioButtonGroup id="rbg3" columns="2" select="onSelect">
-                                                    <RadioButton id="PA" text="PA" />
-                                                    <RadioButton id="SM" text="SM" />
+                                                <RadioButtonGroup
+                                                    id="rbg3"
+                                                    columns="2"
+                                                    select="onSelect"
+                                                >
+                                                    <RadioButton
+                                                        id="PA"
+                                                        text="KPO"
+                                                    />
+                                                    <RadioButton
+                                                        id="SM"
+                                                        text="Supplier"
+                                                    />
                                                 </RadioButtonGroup>
                                             </Toolbar>
                                         </f:toolbar>
                                         <f:content>
-                                            <Label text="Contract" visible="{formModel>/isPASM}" />
-                                            <Input value="" visible="{formModel>/isPASM}" showValueHelp="true" valueHelpRequest="onF4ContractNum" />
- 
-                                            <Label text="Contract Description" visible="{formModel>/isSM}" />
-                                            <Input value="" visible="{formModel>/isSM}" />
- 
-                                            <Label text="Contract Duration" visible="{formModel>/isSM}" />
+                                            <Label
+                                                text="Supplier"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Input
+                                                value=""
+                                                visible="{formModel>/isPA}"
+                                                showValueHelp="true"
+                                                valueHelpRequest="onF4SupplierNum"
+                                                width="35%"
+                                            />
+                                            <Label
+                                                text="Contract"
+                                                visible="{formModel>/isPASM}"
+                                            />
+                                            <Input
+                                                value=""
+                                                visible="{formModel>/isPASM}"
+                                                showValueHelp="true"
+                                                valueHelpRequest="onF4ContractNum"
+                                                width="35%"
+                                                editable="{formModel>/isPA}"
+                                            />
+
+                                            <Label
+                                                text="Customer"
+                                                visible="{formModel>/isSM}"
+                                            />
+                                            <Input
+                                                value=""
+                                                visible="{formModel>/isSM}"
+                                                width="35%"
+                                                editable="{formModel>/isPA}"
+                                            />
+
+                                            <!-- <Label text="Contract Duration" visible="{formModel>/isSM}" />
                                             <Input value="" visible="{formModel>/isSM}" />
  
                                             <Label text="Contract Owner" visible="{formModel>/isSM}" />
-                                            <Input value="" visible="{formModel>/isSM}" />
- 
-                                            <Label text="Supplier/Vendor Details" visible="{formModel>/isPASM}" />
-                                            <Input value="" visible="{formModel>/isPASM}" />
- 
-                                            <Label text="Meeting Type" visible="{formModel>/isPASM}" />
-                                             <Select forceSelection="false" visible="{formModel>/isPASM}" >
+                                            <Input value="" visible="{formModel>/isSM}" />  -->
+
+                                            <Label
+                                                text="Meeting Type"
+                                                visible="{formModel>/isPASM}"
+                                            />
+                                            <Select
+                                                forceSelection="false"
+                                                visible="{formModel>/isPASM}"
+                                                width="35%"
+                                                editable="{formModel>/isPA}"
+                                            >
                                                 <core:Item
                                                     key=""
                                                     text="Kick-off-meeting"
                                                 />
-                                                 <core:Item
+                                                <core:Item
                                                     key=""
                                                     text="Performnce meeting"
                                                 />
+                                            </Select>
+
+                                            <Label
+                                                text="Meeting Location"
+                                                visible="{formModel>/isPASM}"
+                                            />
+                                            <Input
+                                                value=""
+                                                visible="{formModel>/isPASM}"
+                                                width="35%"
+                                                editable="{formModel>/isPA}"
+                                            />
+
+                                            <Label
+                                                text="Purpose Of Meeting"
+                                                visible="{formModel>/isPASM}"
+                                            />
+                                            <Input
+                                                value=""
+                                                visible="{formModel>/isPASM}"
+                                                width="35%"
+                                                editable="{formModel>/isPA}"
+                                            />
+                                            <Label
+                                                text="Proposed Dates"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <!-- <DatePicker
+                                                value=""
+                                                placeholder="Date 1"
+                                            />
+                                            <DatePicker value="Date 2" />
+                                            <DatePicker value="Date 3" />
+                                            <DatePicker value="Date 4" />
+                                            <DatePicker value="Date 5" /> -->
+                                            <VBox>
+                                                <DatePicker
+                                                    value=""
+                                                    placeholder="Date 1"
+                                                    width="35%"
+                                                    visible="{formModel>/isPA}"
+                                                    id="datePicker1"
+                                                />
+                                                <DatePicker
+                                                    value=""
+                                                    id="datePicker2"
+                                                    placeholder="Date 2"
+                                                    width="35%"
+                                                    visible="{formModel>/isPA}"
+                                                />
+                                                <DatePicker
+                                                    value=""
+                                                    id="datePicker3"
+                                                    placeholder="Date 3"
+                                                    width="35%"
+                                                    visible="{formModel>/isPA}"
+                                                />
+                                                <DatePicker
+                                                    value=""
+                                                    id="datePicker4"
+                                                    placeholder="Date 4"
+                                                    width="35%"
+                                                    visible="{formModel>/isPA}"
+                                                />
+                                                <DatePicker
+                                                    value=""
+                                                    id="datePicker5"
+                                                    placeholder="Date 5"
+                                                    width="35%"
+                                                    visible="{formModel>/isPA}"
+                                                />
+                                            </VBox>
+
+                                            <Label
+                                                text="Date Of Meeting"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <DatePicker
+                                                value=""
+                                                visible="{formModel>/isPA}"
+                                                width="35%"
+                                            />
+                                            <Label
+                                                text="Date Of Meeting"
+                                                visible="{formModel>/isSM}"
+                                            />
+                                            <VBox visible="{formModel>/isSM}">
+                                            <Label text="Select date from below"></Label>
+                                                <RadioButtonGroup
+                                                    id="GroupA"
+                                                    visible="{formModel>/isSM}"
+                                                >
+                                                    <RadioButton
+                                                        text="01/08/2024"
+                                                    />
+                                                    <RadioButton
+                                                        text="02/08/2024"
+                                                    />
+                                                    <RadioButton
+                                                        text="03/08/2024"
+                                                    />
+                                                    <RadioButton
+                                                        text="04/08/2024"
+                                                    />
+                                                    <RadioButton
+                                                        text="05/08/2024"
+                                                    />
+                                                </RadioButtonGroup>
+                                            </VBox>
+
+                                            <Label
+                                                text="Meeting Scheduling Status"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Select
+                                                forceSelection="false"
+                                                visible="{formModel>/isPA}"
+                                                width="35%"
+
+                                            >
                                                 <core:Item
                                                     key=""
-                                                    text="Vendor feedback"
+                                                    text="Awaiting Supplier Confirmation
+"
+                                                />
+                                                <core:Item
+                                                    key=""
+                                                    text="Confirmed by supplier
+"
+                                                />
+                                               
+                                              
+                                            </Select>
+                                            
+
+                                            <!-- <Label text="Meeting called by" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" /> -->
+
+                                            <Label
+                                                text="Meeting Agenda"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Table
+                                                id="tableagenda"
+                                                mode="Delete"
+                                                growing="true"
+                                                growingThreshold="10"
+                                                items="{agendaMdel>/}"
+                                                beforeOpenContextMenu="onBeforeOpenContextMenu"
+                                                visible="{formModel>/isPA}"
+                                                noDataText=""
+                                            >
+                                                <contextMenu>
+                                                    <Menu>
+                                                        <MenuItem
+                                                            text="Move to Available Products"
+                                                            press="moveToAvailableProductsTable"
+                                                        />
+                                                        <MenuItem
+                                                            text="Move up"
+                                                            press="moveUp"
+                                                        />
+                                                        <MenuItem
+                                                            text="Move down"
+                                                            press="moveDown"
+                                                        />
+                                                    </Menu>
+                                                </contextMenu>
+                                                <headerToolbar>
+                                                    <OverflowToolbar>
+                                                        <ToolbarSpacer />
+                                                        <Button
+                                                            icon="sap-icon://navigation-up-arrow"
+                                                            tooltip="Move up"
+                                                            press="moveUp"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://navigation-down-arrow"
+                                                            tooltip="Move down"
+                                                            press="moveDown"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://add"
+                                                            press="addRowAgenda"
+                                                        />
+                                                    </OverflowToolbar>
+                                                </headerToolbar>
+                                                <columns>
+                                                    <Column>
+                                                        <Text text="" />
+                                                    </Column>
+                                                    <Column>
+                                                        <Text text="" />
+                                                    </Column>
+                                                </columns>
+                                                <dragDropConfig>
+                                                    <dnd:DragInfo
+                                                        groupName="selected2available"
+                                                        sourceAggregation="items"
+                                                    />
+                                                    <dnd:DropInfo
+                                                        groupName="available2selected"
+                                                        targetAggregation="items"
+                                                        dropPosition="Between"
+                                                        drop="onDropSelectedProductsTable"
+                                                    />
+                                                    <dnd:DragDropInfo
+                                                        sourceAggregation="items"
+                                                        targetAggregation="items"
+                                                        dropPosition="Between"
+                                                        drop="onDropSelectedProductsTable"
+                                                    />
+                                                </dragDropConfig>
+                                                <items>
+                                                    <ColumnListItem>
+                                                        <cells>
+                                                            <Text
+                                                                text="{agendaMdel>agenda}"
+                                                                wrapping="false"
+                                                            />
+                                                            <Button
+                                                                icon="{agendaMdel>icon}"
+                                                            />
+                                                        </cells>
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+
+                                            <Label
+                                                text="Signee"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Select
+                                                forceSelection="false"
+                                                visible="{formModel>/isPA}"
+                                            >
+                                                <core:Item
+                                                    key=""
+                                                    text="Company Designated Representative (CDR) or CDR Delegate
+"
+                                                />
+                                                <core:Item
+                                                    key=""
+                                                    text="Company Designated Site Representative (CDSR)
+"
+                                                />
+                                                <core:Item
+                                                    text="HSE Department
+"
+                                                />
+                                                <core:Item
+                                                    text="Contract Administrator (CA)
+"
+                                                />
+                                                <core:Item text="Cost Group" />
+                                                <core:Item
+                                                    text="Logistics and custom support group"
                                                 />
                                             </Select>
- 
-                                            <Label text="Meeting Location" visible="{formModel>/isPASM}" />
-                                            <Input value="" visible="{formModel>/isPASM}" />
- 
-                                            <Label text="Purpose of meeting/Scope" visible="{formModel>/isPASM}" />
-                                            <Input value="" visible="{formModel>/isPASM}" />
- 
-                                            <Label text="Date of Meeting" visible="{formModel>/isPASM}" />
-                                            <DatePicker value="" visible="{formModel>/isPASM}" />
- 
-                                            <Label text="Meeting scheduling status" visible="{formModel>/isPA}" />
-                                            <Input value="" visible="{formModel>/isPA}" />
- 
-                                            <Label text="Meeting called by" visible="{formModel>/isSM}" />
-                                            <Input value="" visible="{formModel>/isSM}" />
- 
-                                            <Label text="Meeting agenda" visible="{formModel>/isPA}" />
-                                            <TextArea value="" visible="{formModel>/isPA}" />
- 
-                                            <Label text="MoM sequence No." visible="{formModel>/isPA}" />
-                                            <Input value="" visible="{formModel>/isPA}" />
- 
+                                            <Text
+                                                text=""
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Label
+                                                text="Approver"
+                                                visible="{formModel>/isPA}"
+                                            />
+                                            <Select
+                                                forceSelection="false"
+                                                visible="{formModel>/isPA}"
+                                            >
+                                                <core:Item
+                                                    key=""
+                                                    text="Company Designated Representative (CDR) or CDR Delegate
+"
+                                                />
+                                                <core:Item
+                                                    key=""
+                                                    text="Company Designated Site Representative (CDSR)
+"
+                                                />
+                                                <core:Item
+                                                    text="HSE Department
+"
+                                                />
+                                                <core:Item
+                                                    text="Contract Administrator (CA)
+"
+                                                />
+                                                <core:Item text="Cost Group" />
+                                                <core:Item
+                                                    text="Logistics and custom support group"
+                                                />
+                                            </Select>
+                                            <Text
+                                                text=""
+                                                visible="{formModel>/isPA}"
+                                            />
+
                                             <!-- <Label text="Note taker" visible="{formModel>/isPASM}" />
                                             <Input value="" visible="{formModel>/isPASM}" /> -->
- 
-                                            <Label text="Report of missinf issue date " visible="{formModel>/isPA}" />
-                                            <DatePicker value="" visible="{formModel>/isPA}" />
- 
+
+                                            <!-- <Label text="Report Of Meeting Issued Date " visible="{formModel>/isPA}" />
+                                            <DatePicker value="" visible="{formModel>/isPA}" /> -->
+
                                             <!-- <Label text="Feedback Deadline" visible="{formModel>/isPA}" />
                                             <DatePicker value="" visible="{formModel>/isPA}" /> -->
- 
+
                                             <!-- <Label text="Attended by" visible="{formModel>/isPASM}" />
                                             <Input value="" visible="{formModel>/isPASM}" /> -->
- 
-                                            <Label text="Qualification status" visible="{formModel>/isSM}" />
+
+                                            <!-- <Label text="Qualification status" visible="{formModel>/isSM}" />
                                             <Input value="" visible="{formModel>/isSM}" />
  
                                             <Label text="FPAL Status" visible="{formModel>/isSM}" />
@@ -139,12 +442,12 @@
                                             <TextArea value="" visible="{formModel>/isPASM}" />
  
                                             <Label text="Status assignment" visible="{formModel>/isSM}" />
-                                            <Input value="" visible="{formModel>/isSM}" />
+                                            <Input value="" visible="{formModel>/isSM}" /> -->
                                         </f:content>
                                     </f:SimpleForm>
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
- 
+
                             <uxap:ObjectPageSubSection
                                 id="_IDGenObjectPageSubSection"
                                 title="Minutes Of Meeting"
@@ -169,17 +472,17 @@
                                         singleContainerFullSize="false"
                                     >
                                         <f:content>
-                                            <Label text="MoM sequence No." />
+                                            <Label text="MoM Sequence No." />
                                             <Input />
-                                            <Label text="Note taker" />
+                                            <Label text="Note Taker" />
                                             <Input />
                                             <Label
-                                                text="REPORT OF THE MEETING ISSUED DATE"
+                                                text="Report Of Meeting Issued Date"
                                             />
-                                            <DatePicker />
- 
-                                            <Label text="Feedback Deadline:" />
                                             <Input />
+
+                                            <Label text="Feedback Deadline" />
+                                            <DatePicker />
                                         </f:content>
                                     </f:SimpleForm>
                                 </uxap:blocks>
@@ -192,15 +495,16 @@
                                     <Table
                                         id="Table"
                                         items="{myModel>/}"
+                                        mode="Delete"
                                     >
-                                    <headerToolbar>
+                                        <headerToolbar>
                                             <OverflowToolbar
                                                 id="_IDGenToolbffar1"
                                             >
                                                 <ToolbarSpacer
                                                     id="_IDGenTooffflbarSpacer1"
                                                 />
- 
+
                                                 <Button
                                                     id="_IDGfffffenB3"
                                                     icon="sap-icon://add"
@@ -229,13 +533,14 @@
                                                 id="_IDGenColumnListItem1"
                                             >
                                                 <cells>
-                                                    <Text
+                                                    <Input
                                                         id="_IDGenText60"
-                                                        text="{myModel>kpo}"
+                                                        value="{myModel>kpo}"
+                                                        showValueHelp="true"
+                                                        valueHelpRequest="onF4KPOAttendies"
                                                     />
                                                     <CheckBox
                                                         id="_IDGenText6"
-                                                        
                                                     />
                                                 </cells>
                                             </ColumnListItem>
@@ -251,7 +556,25 @@
                                     <Table
                                         id="Tablee"
                                         items="{myModel1>/}"
+                                        mode="Delete"
                                     >
+                                        <headerToolbar>
+                                            <OverflowToolbar
+                                                id="_IDGenToolbdffar1"
+                                            >
+                                                <ToolbarSpacer
+                                                    id="_IDGenToofdfflbarSpacer1"
+                                                />
+
+                                                <Button
+                                                    id="_IDGffffdfenB3"
+                                                    icon="sap-icon://add"
+                                                    type="Emphasized"
+                                                    press="onAddRow1"
+                                                    class="sapUiTinyMarginBegin"
+                                                />
+                                            </OverflowToolbar>
+                                        </headerToolbar>
                                         <columns>
                                             <Column id="as">
                                                 <Text
@@ -263,9 +586,9 @@
                                         <items>
                                             <ColumnListItem id="afdg">
                                                 <cells>
-                                                    <Text
+                                                    <Input
                                                         id="bgg"
-                                                        text="{myModel1>supplier}"
+                                                        value="{myModel1>supplier}"
                                                     />
                                                 </cells>
                                             </ColumnListItem>
@@ -274,13 +597,75 @@
                                 </uxap:blocks>
                             </uxap:ObjectPageSubSection>
                             <uxap:ObjectPageSubSection
-                                id="_IDGenObjectPageSuhhbSection6e"
+                                id="_IDGenObjectPageSubSection6ewq"
                                 title=""
+                            >
+                                <uxap:blocks>
+                                    <Table
+                                        id="Tableee3"
+                                        items="{myModel2>/}"
+                                        mode="Delete"
+                                    >
+                                        <headerToolbar>
+                                            <OverflowToolbar
+                                                id="_IDGenToolbar1q"
+                                            >
+                                                <Text text="Copy Sent To" />
+                                                <ToolbarSpacer
+                                                    id="_IDGenToolbarSpacer1q"
+                                                />
+                                                <Button
+                                                    id="_IDGenButton3"
+                                                    icon="sap-icon://add"
+                                                    type="Emphasized"
+                                                    press="onAddRow2"
+                                                    class="sapUiTinyMarginBegin"
+                                                />
+                                            </OverflowToolbar>
+                                        </headerToolbar>
+                                        <columns>
+                                            <Column id="Column1">
+                                                <Text
+                                                    id="Text1"
+                                                    text="Name"
+                                                />
+                                            </Column>
+                                            <Column id="Column2">
+                                                <Text
+                                                    id="Text2"
+                                                    text="Email"
+                                                />
+                                            </Column>
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem
+                                                id="ColumnListItem1"
+                                            >
+                                                <cells>
+                                                    <Input
+                                                        id="TextCell1"
+                                                        value="{myModel2>name}"
+                                                    />
+                                                    <Input
+                                                        id="TextCell2"
+                                                        value="{myMode21>email}"
+                                                    />
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                    </Table>
+                                </uxap:blocks>
+                            </uxap:ObjectPageSubSection>
+
+                            <uxap:ObjectPageSubSection
+                                id="_IDGenObjectPageSuhhbSection6e"
+                                title="Meeting Details"
                             >
                                 <uxap:blocks>
                                     <Table
                                         id="Table2"
                                         items="{logModel>/}"
+                                        mode="Delete"
                                     >
                                         <headerToolbar>
                                             <OverflowToolbar
@@ -289,7 +674,7 @@
                                                 <ToolbarSpacer
                                                     id="_IDGenToolbarSpacer1"
                                                 />
- 
+
                                                 <Button
                                                     id="_IDGenB3"
                                                     icon="sap-icon://add"
@@ -330,9 +715,9 @@
                                                 id="_IDGenColumnL2istItem1"
                                             >
                                                 <cells>
-                                                    <TextArea
+                                                    <Text
                                                         id="_IDGenT2ext60"
-                                                        value="{logModel>NO.}"
+                                                        text="{logModel>NO}"
                                                     />
                                                     <TextArea
                                                         id="_IDGenT2ext6"
@@ -360,13 +745,13 @@
         <footer>
             <OverflowToolbar id="Toolbar">
                 <ToolbarSpacer />
- 
+
                 <Button text="Save" />
                 <Button
                     text="Submit For Review"
                     press="onSubmitMOM"
                 />
- 
+
                 <Button
                     text="Confirm"
                     press="onPressMoM"
